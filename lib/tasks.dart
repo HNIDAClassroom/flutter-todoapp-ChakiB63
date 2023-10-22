@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tp3/models/task.dart';
 import 'package:tp3/task_list.dart';
+import 'package:tp3/widgets/new_task.dart';
 
 class Tasks extends StatefulWidget {
   const Tasks({super.key});
@@ -22,21 +23,42 @@ class _TasksState extends State<Tasks> {
     Task(
       title: 'Faire les courses',
       description: 'Acheter des provisions pour la semaine',
-      date: DateTime.now().subtract(Duration(days: 1)),
+      date: DateTime.now().subtract(const Duration(days: 1)),
       category: Category.shopping,
     ),
     Task(
-      title: 'Rediger un CR',
-      description: '',
-      date: DateTime.now().subtract(Duration(days: 2)),
+      title: 'Soumettre le projet',
+      description: 'TO DO List',
+      date: DateTime.now().subtract(const Duration(days: 2)),
       category: Category.personal,
     ),
     // Add more tasks with descriptions as needed
   ];
 
+  void _openAddTaskOverlay() {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => const NewTask(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Flutter ToDoList'),
+        /*
+        actions: [
+          IconButton(
+            onPressed: _openAddTaskOverlay,
+            icon: const Icon(Icons.add),
+          ),
+        ],*/
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _openAddTaskOverlay,
+        child: Icon(Icons.add),
+      ),
       body: Column(
         children: [
           Expanded(child: TasksList(tasks: _registeredTasks)),

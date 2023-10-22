@@ -4,8 +4,12 @@ import 'package:tp3/tasks.dart';
 
 void main() {
   runApp(
-    const MaterialApp(
-      home: Tasks(),
+    MaterialApp(
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(elevation: 20),
+        useMaterial3: true,
+      ),
+      home: const Tasks(),
     ),
   );
 }
