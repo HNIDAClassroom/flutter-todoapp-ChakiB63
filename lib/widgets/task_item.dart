@@ -19,7 +19,7 @@ class TaskItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              task.title,
+              '[ ${task.category.name.toString().toUpperCase()} ] : ${task.title.toString()}',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -34,20 +34,20 @@ class TaskItem extends StatelessWidget {
               ),
             ),
             SizedBox(height: 8),
-            Text(
-              'Date: ${task.date.toString()}',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.blue,
-              ),
-            ),
-            SizedBox(height: 4),
-            Text(
-              'Catégorie: ${task.category}',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.green,
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    '${task.date}',
+                    textAlign: TextAlign
+                        .end, // Aligns the text to the end (right) of the line
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Color.fromARGB(255, 121, 191, 248),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
