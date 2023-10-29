@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "235499332635",
+    "project_id": "to-do-list-cebc2",
+    "storage_bucket": "to-do-list-cebc2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:235499332635:android:b9f2362a42b5f8a2f444be",
+        "android_client_info": {
+          "package_name": "com.example.tp3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "235499332635-rr3o70l8o34ajrn54ikldkdm79gm3714.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYduNzE6eT24qTZbEZgi1FuYkiXe6ynmM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "235499332635-rr3o70l8o34ajrn54ikldkdm79gm3714.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
