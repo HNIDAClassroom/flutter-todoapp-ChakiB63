@@ -9,23 +9,23 @@ class TaskItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 4,
-      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               '[ ${task.category.name.toString().toUpperCase()} ] : ${task.title.toString()}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               task.description,
               style: TextStyle(
@@ -33,7 +33,7 @@ class TaskItem extends StatelessWidget {
                 color: Colors.grey[600],
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Row(
               children: [
                 Expanded(
@@ -41,7 +41,7 @@ class TaskItem extends StatelessWidget {
                     '${task.date}',
                     textAlign: TextAlign
                         .end, // Aligns the text to the end (right) of the line
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       color: Color.fromARGB(255, 121, 191, 248),
                     ),

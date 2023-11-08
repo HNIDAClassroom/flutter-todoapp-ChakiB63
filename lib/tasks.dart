@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tp3/models/task.dart';
+import 'package:tp3/services/firestore.dart';
 import 'package:tp3/task_list.dart';
 import 'package:tp3/widgets/new_task.dart';
 
@@ -13,6 +14,8 @@ class Tasks extends StatefulWidget {
 }
 
 class _TasksState extends State<Tasks> {
+  final FirestoreService firestoreService = FirestoreService();
+  /*
   final List<Task> _registeredTasks = [
     Task(
       title: 'Apprendre Flutter',
@@ -34,11 +37,13 @@ class _TasksState extends State<Tasks> {
     ),
     // Add more tasks with descriptions as needed
   ];
+  */
 
-  Future<void> _addTask(Task task) async {
-    await Future.delayed(Duration(seconds: 2));
+  void _addTask(Task task) {
     setState(() {
-      _registeredTasks.add(task);
+      //_registeredTasks.add(task);
+      firestoreService.addTask(task);
+      //Navigator.pop(context);
     });
   }
 
@@ -54,21 +59,14 @@ class _TasksState extends State<Tasks> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter ToDoList'),
-        /*
-        actions: [
-          IconButton(
-            onPressed: _openAddTaskOverlay,
-            icon: const Icon(Icons.add),
-          ),
-        ],*/
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _openAddTaskOverlay,
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       body: Column(
         children: [
-          Expanded(child: TasksList(tasks: _registeredTasks)),
+          Expanded(child: TasksList()),
         ],
       ),
     );

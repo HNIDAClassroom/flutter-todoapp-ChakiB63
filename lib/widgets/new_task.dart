@@ -46,7 +46,7 @@ class _NewTaskState extends State<NewTask> {
       Task(
           title: _titleController.text,
           description: _descriptionController.text,
-          date: DateTime(2023, 10, 16, 14, 30),
+          date: DateTime.now(),
           category: _selectedCategory),
     );
   }
@@ -54,7 +54,7 @@ class _NewTaskState extends State<NewTask> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         children: [
           Row(
@@ -63,28 +63,28 @@ class _NewTaskState extends State<NewTask> {
                 child: TextField(
                   controller: _titleController,
                   maxLength: 50,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Title',
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Row(
             children: [
               Expanded(
                 child: TextField(
                   controller: _descriptionController,
                   maxLength: 200,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Description',
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Row(
             children: [
               Expanded(
@@ -105,14 +105,14 @@ class _NewTaskState extends State<NewTask> {
                   },
                 ),
               ),
-              SizedBox(width: 12),
+              const SizedBox(width: 12),
               ElevatedButton(
                 onPressed: () {
                   // Enregistrez les données ici ou effectuez l'action appropriée
                   _submitTaskData();
                   //Navigator.pop(context); // Ferme le ModalBottomSheet après l'enregistrement
                 },
-                child: Text('Enregistrer'),
+                child: const Text('Enregistrer'),
               ),
             ],
           ),
