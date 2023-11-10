@@ -7,10 +7,18 @@ import 'package:tp3/widgets/task_item.dart';
 
 class TasksList extends StatelessWidget {
   final FirestoreService firestoreService = FirestoreService();
-
+  //int id = 0;
   TasksList({
     super.key,
   });
+
+  void _deleteTask(Task task) {
+    firestoreService.deleteTask(task.docId);
+  }
+
+  void _updateTaskCompletion(Task task, bool newCompletionValue) {
+    firestoreService.updateTaskCompletion(task.docId, newCompletionValue);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +29,15 @@ class TasksList extends StatelessWidget {
             return Text('Error: ${snapshot.error}');
           }
 
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator(); // Loading indicator while data is loading
-          }
-
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Text(
-                'No tasks available.'); // Display a message when there are no tasks
+            return const Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                  Text(
+                    'No tasks available.',
+                  )
+                ]));
           }
           final taskLists = snapshot.data!.docs;
           List<Task> taskItems = [];
@@ -36,35 +46,42 @@ class TasksList extends StatelessWidget {
             Map<String, dynamic> data = document.data() as Map<String, dynamic>;
             String title = data['taskTitle'];
             String description = data['taskDesc'];
-            DateTime date =
-                DateFormat('yyyy-MM-dd HH:mm:ss').parse(data['taskDate']);
+            DateTime date = DateFormat('yyyy-MM-dd').parse(data['taskDate']);
             String categoryString = data['taskCategory'];
             Category category;
             switch (categoryString) {
-              case 'Category.personal':
+              case 'personal':
                 category = Category.personal;
                 break;
-              case 'Category.work':
+              case 'work':
                 category = Category.work;
                 break;
-              case 'Category.shopping':
+              case 'shopping':
                 category = Category.shopping;
                 break;
               default:
                 category = Category.others;
             }
+            bool completed = data['taskComplet'];
+            //id++;
             Task task = Task(
+              //id: id,
               title: title,
               description: description,
               date: date,
               category: category,
+              completion: completed,
+              docId: document.id,
             );
             taskItems.add(task);
           }
           return ListView.builder(
             itemCount: taskItems.length,
             itemBuilder: (ctx, index) {
-              return TaskItem(taskItems[index]);
+              return TaskItem(
+                  task: taskItems[index],
+                  ddeleteTask: _deleteTask,
+                  uupdateTaskCompletion: _updateTaskCompletion);
             },
           );
         });

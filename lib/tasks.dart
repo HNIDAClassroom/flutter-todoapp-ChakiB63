@@ -43,7 +43,6 @@ class _TasksState extends State<Tasks> {
     setState(() {
       //_registeredTasks.add(task);
       firestoreService.addTask(task);
-      //Navigator.pop(context);
     });
   }
 
